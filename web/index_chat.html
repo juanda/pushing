@@ -12,26 +12,34 @@ and open the template in the editor.
     </head>
     <body>
 
+        <input type="text" id="message" />
 
         <button type="button" id="btn_send" onclick="sendMessage()">send</button>
 
+        <h1>Mensajes</h1>
+        <p id="messages"></p>
+
         <script>
-            
-             var conn = new WebSocket('ws://localhost:8080');
-             
-             conn.onopen = function(e) {
-             
-             console.log("Connection established!");
-             };
-             
-             conn.onmessage = function(e) {
-             console.log(e.data);
-             };
-             
-             function sendMessage() {
-             conn.send('Hello World!');
-             }
-             
+
+            var conn = new WebSocket('ws://localhost:8080');
+
+            conn.onopen = function(e) {
+
+                console.log("Connection established!");
+            };
+
+            conn.onmessage = function(e) {
+                var mensajes = document.getElementById('messages');
+                
+                mensajes.innerHTML = mensajes.innerHTML + '<br/>' + e.data;
+                console.log(e.data);
+            };
+
+            function sendMessage() {
+                var message = document.getElementById('message').value;
+                conn.send(message);
+            }
+
         </script>       
 
     </body>

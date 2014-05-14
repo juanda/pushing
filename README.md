@@ -1,5 +1,5 @@
-Prueba Servidor Push
-====================
+Servidor Push
+=============
 
 Para hacer funcionar el sistema es necesario un servidor rabbitMQ.
 
@@ -17,4 +17,13 @@ Para hacer funcionar el sistema es necesario un servidor rabbitMQ.
   es imprescindible añadir un header denominado 'cat' con un valor
   'cat_messages'
 
-  
+Servidor Chat
+=============
+
+- arrancar el servidor push: php push_chat.php
+
+- arrancar el servidor web: cd web; php -S localhost 8000
+
+- abrir varios navegadores apuntando a la página http://localhost:8000/index_chat.html
+
+- En uno de los navegadores escribir mensajes y comprobar que llegan a los demás
