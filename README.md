@@ -1,7 +1,8 @@
 Servidor Push
 =============
 
-Para hacer funcionar el sistema es necesario un servidor rabbitMQ.
+Para hacer funcionar el sistema es necesario un servidor rabbitMQ con el 
+plugin STOMP habilitado (rabbitmq-plugins enable rabbitmq_stomp)
 
 - arrancar el broker: sudo service rabbitmq-server start
 
