@@ -6,15 +6,15 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Push web app tutorial</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>
+        <script src="http://autobahn.s3.amazonaws.com/js/autobahn.js"></script>
         <script src="http://localhost:8000/js/app.js"></script>   
     </head>
     <body>
         <h1>Publicar mensaje</h1>
-        <input id="msg" type="text" value="Hello, world!"></input>
+        <input id="msg" type="text" value="Hello, world!" />
         <button onclick="publish(document.getElementById('msg').value)">Publicar</button>
         <h1>Mensajes</h1>
         <p id="messages"></p>        
