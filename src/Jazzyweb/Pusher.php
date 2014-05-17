@@ -49,8 +49,32 @@ class Pusher implements WampServerInterface {
     }
 
     public function onCall(ConnectionInterface $conn, $id, $topic, array $params) {
-        // In this application if clients send data it's because the user hacked around in console
-        $conn->callError($id, $topic, 'You are not allowed to make calls')->close();
+        $category = $topic->getId();
+
+        echo "Call to procedure arrived, name: " . $category . PHP_EOL;
+        echo "params" . PHP_EOL;
+        print_r($params);
+        switch ($category){
+            case 'push.tutorial.areaCuadrado':
+                $error = false;
+                if(count($params) != 2){
+                    $error = true;
+                    $errorDesc = "Nº de parámetros distinto de 2";
+                }
+                
+                if(!is_numeric($params[0]) || !is_numeric($params[1])){
+                    $error = true;
+                    $errorDesc .= "Argumento no válido";
+                }
+                
+                if($error){
+                    $conn->callError($id, $topic, $errorDesc);
+                }else{
+                    sleep(2); // simulando un proceso pesado
+                    $result = array($params[0]*$params[1]);
+                    $conn->callResult($id, $result);
+                }
+        }
     }
 
     public function onClose(ConnectionInterface $conn) {

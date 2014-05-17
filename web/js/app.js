@@ -15,8 +15,8 @@ ab.connect(
 
                     // subscribe to a topic
                     session.subscribe('push.tutorial.messages', function(topic, evt) {                        
-                        addMessage(topic, evt);
-                    });
+                        addMessage(topic, evt, 'messages');
+                    });                                        
 
                 },
                 // The onhangup handler
@@ -30,8 +30,8 @@ ab.connect(
                                 }
                         );
 
-function addMessage(topic, data) {
-    var messages = document.getElementById('messages');
+function addMessage(topic, data, elem) {
+    var messages = document.getElementById(elem);
     messages.innerHTML = messages.innerHTML + '<br/>' + topic + ': ' + data.body;
     console.log(topic + '" : ' + data.body);
 }
@@ -40,6 +40,18 @@ function publish(message) {
     var myEvent = {body: message, details: ["something happened", "today"]};
     
     session.publish('push.tutorial.messages', myEvent, true);
+}
+
+function callRectangleArea(h, w){
+    var resultBox = document.getElementById('result');
+    
+    resultBox.innerHTML = "calculando ...";
+    
+    session.call('push.tutorial.areaCuadrado', h, w).then(function(result){        
+        resultBox.innerHTML = result + " m<sup>2</sup>";
+    }, function(error){        
+        resultBox.innerHTML = '<font color="red">' + error.desc +'</font>'
+    });
 }
 
 

@@ -17,6 +17,13 @@ and open the template in the editor.
         <input id="msg" type="text" value="Hello, world!" />
         <button onclick="publish(document.getElementById('msg').value)">Publicar</button>
         <h1>Mensajes</h1>
-        <p id="messages"></p>        
+        <p id="messages"></p>  
+        
+        <h1>Realizar llamada remota a procedimiento</h1> 
+        Altura : <input id="hight" type="text" value="1" /> metros
+        Anchura: <input id="width" type="text" value="1" /> metros
+        <button onclick="callRectangleArea(document.getElementById('hight').value, document.getElementById('width').value)">Calcular</button>
+        <h1>Resultado área</h1>
+        <p id="result"></p>          
     </body>
 </html>
