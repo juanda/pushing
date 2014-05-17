@@ -10,12 +10,18 @@ plugin STOMP habilitado (rabbitmq-plugins enable rabbitmq_stomp)
 
 - arrancar el servidor web: cd web; php -S localhost 8000
 
-- en un navegador cargar la página http://localhost:8000
+- en varios navegadores cargar la página http://localhost:8000
 
-- lanzar el script 'sendMessageToQueue.php':
-  # php sendMessageToQueue.php cat_messages "hola mundo" 
+- desde la aplicación puedes enviar mensajes al resto de clientes,
+  también puedes lanzar un procedimiento remoto que calcula el área de
+  un cuadrado.
+
+- Por otro lado el script 'sendMessageToQueue.php' es un ejemplo de como enviar
+  mensajes a los clientes desde aplicaciones externas a través de un servidor 
+  rabbitMQ:
+  # php sendMessageToQueue.php push.tutorial.messages "hola mundo" 
   este script envía un mensaje a la cola con un header
-  de clave 'cat' y valor el primer argumento ('cat_messages')
+  de clave 'cat' y valor el primer argumento ('push.tutorial.messages')
 
 Nota: También podemos enviar mensajes a la cola desde la aplicación
 de monitorización de rabbitMQ. Para ello:
@@ -24,7 +30,7 @@ de monitorización de rabbitMQ. Para ello:
   http://localhost:15672, abrir la cola denominada 'la_cola' y 
   enviarle mensajes. Para que lleguen a los clientes dichos mensaje
   es imprescindible añadir un header denominado 'cat' con un valor
-  'cat_messages'
+  'push.tutorial.messages'
 
 Servidor Chat
 =============
